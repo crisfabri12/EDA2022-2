@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+class Cvector{
+	private:
+		int n;
+		int max;
+		int *vector;
+		int delta;
+		void Resize(){
+			int *aux = new int[this->max+this->delta];
+			int i = 0;
+			while(i != this->n){
+				aux[i] = vector[i];
+				i++;
+			}
+			delete [ ]vector;
+			vector = aux;
+		}
+	public:
+		Cvector(){
+			this->delta = 10;
+			this->n = 0;
+			this->max = 0;
+		}
+		
+		void Insert(int element){
+			if( this->n == this->max ) 
+				Resize(); 
+			this->vector[this->n++] = element;
+		}
+			
+		int Size(){
+			return this->n;
+		}
+			
+		int get(int i){
+			return this->vector[i];
+		}
+};
+
+
+int main(int argc, char *argv[]) {
+	Cvector vec;
+	vec.Insert(2);
+	vec.Insert(5);
+	vec.Insert(6);
+	
+	for(int i = 0; i < vec.Size(); i++){
+		cout<<vec.get(i)<< " ";
+	}
+	return 0;
+}
+

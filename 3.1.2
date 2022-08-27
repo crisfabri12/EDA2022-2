@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int *vec = NULL;
+int n = 0; 
+int max = 0;
+
+void Resize(){
+	int *aux = new int[max++];
+	int i = 0;
+	while(i != n){
+		aux[i] = vec[i];
+		i++;
+	}
+	delete [ ]vec;
+	vec = aux;
+}
+
+void Insert(int elem)
+{
+	if( n == max ) 
+		Resize();
+	vec[n++] = elem;
+}
+
+int main(int argc, char *argv[]) {
+	Insert(2);
+	Insert(2);
+	for(int i = 0; i < n; i++){
+		cout<<vec[i]<<" ";
+	}
+}
+
