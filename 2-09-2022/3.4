@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+typedef char Type;
+
+
+class Cvector{
+private:
+	int n;
+	int max;
+	Type *vector;
+	int delta;
+	void Resize(){
+		Type *aux = new Type[this->max+this->delta];
+		int i = 0;
+		while(i != this->n){
+			aux[i] = vector[i];
+			i++;
+		}
+		delete [ ]vector;
+		vector = aux;
+	}
+public:
+			Cvector(){
+				this->delta = 10;
+				this->n = 0;
+				this->max = 0;
+			}
+			
+			void Insert(Type element){
+				if( this->n == this->max ) 
+					Resize(); 
+				this->vector[this->n++] = element;
+			}
+				
+			int Size(){
+				return this->n;
+			}
+				
+			Type get(int i){
+				return this->vector[i];
+			}
+};
+
+
+
+int main(int argc, char *argv[]) {
+	Cvector vec;
+	vec.Insert('a');
+	vec.Insert('b');
+	vec.Insert('c');
+	
+	for(int i = 0; i < vec.Size(); i++){
+		cout<<vec.get(i)<< " ";
+	}
+	return 0;
+}
+
